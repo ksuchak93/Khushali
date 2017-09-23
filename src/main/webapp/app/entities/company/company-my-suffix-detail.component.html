@@ -1,0 +1,37 @@
+
+<div *ngIf="company">
+    <h2><span jhiTranslate="khushFinalApp.company.detail.title">Company</span> {{company.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="khushFinalApp.company.companyName">Company Name</span></dt>
+        <dd>
+            <span>{{company.companyName}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.company.address">Address</span></dt>
+        <dd>
+            <span *ngFor="let address of company.addresses; let last = last">
+                <a [routerLink]="['/address-my-suffix', address?.id ]">{{address.addressLineOne}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.company.companyCategory">Company Category</span></dt>
+        <dd>
+            <span *ngFor="let companyCategory of company.companyCategories; let last = last">
+                <a [routerLink]="['/company-category-my-suffix', companyCategory?.id ]">{{companyCategory.name}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'company-my-suffix/'+ company.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

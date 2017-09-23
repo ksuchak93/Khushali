@@ -1,0 +1,30 @@
+{
+    "khushFinalApp": {
+        "salesOrderProduct" : {
+            "home": {
+                "title": "Sales Order Products",
+                "createLabel": "Create a new Sales Order Product",
+                "createOrEditLabel": "Create or edit a Sales Order Product",
+                "search": "Search for Sales Order Product"
+            },
+            "created": "A new Sales Order Product is created with identifier {{ param }}",
+            "updated": "A Sales Order Product is updated with identifier {{ param }}",
+            "deleted": "A Sales Order Product is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Sales Order Product {{ id }}?"
+            },
+            "detail": {
+                "title": "Sales Order Product"
+            },
+            "quantity": "Quantity",
+            "unitPrice": "Unit Price",
+            "discount": "Discount",
+            "total": "Total",
+            "fulfilled": "Fulfilled",
+            "shippedQuantity": "Shipped Quantity",
+            "shipDate": "Ship Date",
+            "salesOrder": "Sales Order",
+            "product": "Product"
+        }
+    }
+}

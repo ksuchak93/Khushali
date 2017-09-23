@@ -1,0 +1,63 @@
+
+<div *ngIf="salesOrderProduct">
+    <h2><span jhiTranslate="khushFinalApp.salesOrderProduct.detail.title">Sales Order Product</span> {{salesOrderProduct.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="khushFinalApp.salesOrderProduct.quantity">Quantity</span></dt>
+        <dd>
+            <span>{{salesOrderProduct.quantity}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.salesOrderProduct.unitPrice">Unit Price</span></dt>
+        <dd>
+            <span>{{salesOrderProduct.unitPrice}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.salesOrderProduct.discount">Discount</span></dt>
+        <dd>
+            <span>{{salesOrderProduct.discount}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.salesOrderProduct.total">Total</span></dt>
+        <dd>
+            <span>{{salesOrderProduct.total}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.salesOrderProduct.fulfilled">Fulfilled</span></dt>
+        <dd>
+            <span>{{salesOrderProduct.fulfilled}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.salesOrderProduct.shippedQuantity">Shipped Quantity</span></dt>
+        <dd>
+            <span>{{salesOrderProduct.shippedQuantity}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.salesOrderProduct.shipDate">Ship Date</span></dt>
+        <dd>
+            <span>{{salesOrderProduct.shipDate | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.salesOrderProduct.salesOrder">Sales Order</span></dt>
+        <dd>
+            <div *ngIf="salesOrderProduct.salesOrder">
+                <a [routerLink]="['/sales-order-my-suffix', salesOrderProduct.salesOrder?.id]">{{salesOrderProduct.salesOrder?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.salesOrderProduct.product">Product</span></dt>
+        <dd>
+            <div *ngIf="salesOrderProduct.product">
+                <a [routerLink]="['/product-demo-my-suffix', salesOrderProduct.product?.id]">{{salesOrderProduct.product?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'sales-order-product-my-suffix/'+ salesOrderProduct.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

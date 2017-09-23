@@ -1,0 +1,27 @@
+{
+    "khushFinalApp": {
+        "shipProduct" : {
+            "home": {
+                "title": "Ship Products",
+                "createLabel": "Create a new Ship Product",
+                "createOrEditLabel": "Create or edit a Ship Product",
+                "search": "Search for Ship Product"
+            },
+            "created": "A new Ship Product is created with identifier {{ param }}",
+            "updated": "A Ship Product is updated with identifier {{ param }}",
+            "deleted": "A Ship Product is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Ship Product {{ id }}?"
+            },
+            "detail": {
+                "title": "Ship Product"
+            },
+            "quantity": "Quantity",
+            "netWeight": "Net Weight",
+            "grossWeight": "Gross Weight",
+            "packege": "Packege",
+            "shipment": "Shipment",
+            "salesOrderProduct": "Sales Order Product"
+        }
+    }
+}

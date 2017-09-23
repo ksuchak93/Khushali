@@ -1,0 +1,95 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myContactLabel" jhiTranslate="khushFinalApp.contact.home.createOrEditLabel">Create or edit a Contact</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!contact.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="contact.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.contact.firstName" for="field_firstName">First Name</label>
+            <input type="text" class="form-control" name="firstName" id="field_firstName"
+                [(ngModel)]="contact.firstName"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.contact.lastName" for="field_lastName">Last Name</label>
+            <input type="text" class="form-control" name="lastName" id="field_lastName"
+                [(ngModel)]="contact.lastName"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.contact.title" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                [(ngModel)]="contact.title"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.contact.department" for="field_department">Department</label>
+            <input type="text" class="form-control" name="department" id="field_department"
+                [(ngModel)]="contact.department"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.contact.email" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                [(ngModel)]="contact.email"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.contact.officePhone" for="field_officePhone">Office Phone</label>
+            <input type="text" class="form-control" name="officePhone" id="field_officePhone"
+                [(ngModel)]="contact.officePhone"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.contact.mobile" for="field_mobile">Mobile</label>
+            <input type="text" class="form-control" name="mobile" id="field_mobile"
+                [(ngModel)]="contact.mobile"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.contact.homePhone" for="field_homePhone">Home Phone</label>
+            <input type="text" class="form-control" name="homePhone" id="field_homePhone"
+                [(ngModel)]="contact.homePhone"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.contact.fax" for="field_fax">Fax</label>
+            <input type="text" class="form-control" name="fax" id="field_fax"
+                [(ngModel)]="contact.fax"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.contact.whatsAppId" for="field_whatsAppId">Whats App Id</label>
+            <input type="text" class="form-control" name="whatsAppId" id="field_whatsAppId"
+                [(ngModel)]="contact.whatsAppId"  />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.contact.company" for="field_company">Company</label>
+            <select class="form-control" id="field_company" name="company" [(ngModel)]="contact.company" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="companyOption.id === contact.company?.id ? contact.company : companyOption" *ngFor="let companyOption of companies; trackBy: trackCompanyById">{{companyOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.contact.contactCategory" for="field_contactCategory">Contact Category</label>
+            <select class="form-control" id="field_contactCategory" name="contactCategory" [(ngModel)]="contact.contactCategory" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="contactCategoryOption.id === contact.contactCategory?.id ? contact.contactCategory : contactCategoryOption" *ngFor="let contactCategoryOption of contactcategories; trackBy: trackContactCategoryById">{{contactCategoryOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="khushFinalApp.contact.address" for="field_address">Address</label>
+            <select class="form-control" id="field_address" multiple name="address" [(ngModel)]="contact.addresses">
+                <option [ngValue]="getSelected(contact.addresses, addressOption)" *ngFor="let addressOption of addresses; trackBy: trackAddressById">{{addressOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,77 @@
+
+<div *ngIf="shipment">
+    <h2><span jhiTranslate="khushFinalApp.shipment.detail.title">Shipment</span> {{shipment.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="khushFinalApp.shipment.shipmentNo">Shipment No</span></dt>
+        <dd>
+            <span>{{shipment.shipmentNo}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.shipment.bookingNo">Booking No</span></dt>
+        <dd>
+            <span>{{shipment.bookingNo}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.shipment.etd">Etd</span></dt>
+        <dd>
+            <span>{{shipment.etd | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.shipment.shipperCompany">Shipper Company</span></dt>
+        <dd>
+            <div *ngIf="shipment.shipperCompany">
+                <a [routerLink]="['/company-my-suffix', shipment.shipperCompany?.id]">{{shipment.shipperCompany?.name}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.shipment.shipShipmentStatus">Ship Shipment Status</span></dt>
+        <dd>
+            <div *ngIf="shipment.shipShipmentStatus">
+                <a [routerLink]="['/ship-shipment-status-my-suffix', shipment.shipShipmentStatus?.id]">{{shipment.shipShipmentStatus?.name}}</a>
+            </div>
+        </dd>
+    </dl>
+
+
+    <div>
+        <span style="font-weight: bold;">Shipment Product</span>
+    </div>
+
+    <div class="table-responsive" *ngIf="shipment.shipProducts">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th ><span>Sales Order</span> <span ></span></th>
+                <th ><span>Product</span> <span ></span></th>
+                <th ><span>Quantity</span> <span ></span></th>
+                <th ><span >Net Weight</span> <span ></span></th>
+                <th ><span >Gross Weight</span> <span ></span></th>
+                <th ><span >Package</span> <span ></span></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let shipProduct of shipment.shipProducts ;trackBy: trackId">
+                <td>{{shipProduct.salesOrderProduct.salesOrder.orderNumber}}</td>
+                <td>{{shipProduct.salesOrderProduct.product.name}}</td>
+                <td>{{shipProduct.quantity}}</td>
+                <td>{{shipProduct.netWeight}}</td>
+                <td>{{shipProduct.grossWeight}}</td>
+                <td>{{shipProduct.packege}}</td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'shipment-my-suffix/'+ shipment.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

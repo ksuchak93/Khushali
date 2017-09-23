@@ -1,0 +1,76 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="mySalesOrderProductLabel" jhiTranslate="khushFinalApp.salesOrderProduct.home.createOrEditLabel">Create or edit a Sales Order Product</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!salesOrderProduct.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="salesOrderProduct.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.salesOrderProduct.quantity" for="field_quantity">Quantity</label>
+            <input type="text" class="form-control" name="quantity" id="field_quantity"
+                [(ngModel)]="salesOrderProduct.quantity"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.salesOrderProduct.unitPrice" for="field_unitPrice">Unit Price</label>
+            <input type="number" class="form-control" name="unitPrice" id="field_unitPrice"
+                [(ngModel)]="salesOrderProduct.unitPrice"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.salesOrderProduct.discount" for="field_discount">Discount</label>
+            <input type="number" class="form-control" name="discount" id="field_discount"
+                [(ngModel)]="salesOrderProduct.discount"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.salesOrderProduct.total" for="field_total">Total</label>
+            <input type="number" class="form-control" name="total" id="field_total"
+                [(ngModel)]="salesOrderProduct.total"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.salesOrderProduct.fulfilled" for="field_fulfilled">Fulfilled</label>
+            <input type="checkbox" class="form-control" name="fulfilled" id="field_fulfilled"
+                [(ngModel)]="salesOrderProduct.fulfilled"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.salesOrderProduct.shippedQuantity" for="field_shippedQuantity">Shipped Quantity</label>
+            <input type="number" class="form-control" name="shippedQuantity" id="field_shippedQuantity"
+                [(ngModel)]="salesOrderProduct.shippedQuantity"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.salesOrderProduct.shipDate" for="field_shipDate">Ship Date</label>
+            <div class="d-flex">
+                <input id="field_shipDate" type="datetime-local" class="form-control" name="shipDate" [(ngModel)]="salesOrderProduct.shipDate"
+                  />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.salesOrderProduct.salesOrder" for="field_salesOrder">Sales Order</label>
+            <select class="form-control" id="field_salesOrder" name="salesOrder" [(ngModel)]="salesOrderProduct.salesOrder" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="salesOrderOption.id === salesOrderProduct.salesOrder?.id ? salesOrderProduct.salesOrder : salesOrderOption" *ngFor="let salesOrderOption of salesorders; trackBy: trackSalesOrderById">{{salesOrderOption.orderNumber}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.salesOrderProduct.product" for="field_product">Product</label>
+            <select class="form-control" id="field_product" name="product" [(ngModel)]="salesOrderProduct.product" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="productDemoOption.id === salesOrderProduct.product?.id ? salesOrderProduct.product : productDemoOption" *ngFor="let productDemoOption of productdemos; trackBy: trackProductDemoById">{{productDemoOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

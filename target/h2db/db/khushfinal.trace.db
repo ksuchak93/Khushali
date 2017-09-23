@@ -1,0 +1,31 @@
+2017-09-17 10:53:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "DATABASECHANGELOGLOCK" not found; SQL statement:
+select count(*) from PUBLIC.DATABASECHANGELOGLOCK [42102-196]
+2017-09-17 10:53:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO PRODUCT_CATEGORY (""CATEGORY_ID"",'name'[*])
+            VALUES ( ""PVC PIPE FITTINGS"",'PVC Pipe Fittings') "; expected "identifier"; SQL statement:
+INSERT INTO product_category (`category_id`,'name')
+            VALUES ( `PVC Pipe Fittings`,'PVC Pipe Fittings') [42001-196]
+2017-09-17 10:56:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO PRODUCT_CATEGORY (""CATEGORY_ID"",'name'[*])
+            VALUES (""PVC PIPE FITTINGS"",'PVC Pipe Fittings') "; expected "identifier"; SQL statement:
+INSERT INTO product_category (`category_id`,'name')
+            VALUES (`PVC Pipe Fittings`,'PVC Pipe Fittings') [42001-196]
+2017-09-17 11:00:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO PRODUCT_CATEGORY ('category_id'[*],'name')
+            VALUES ('PVC Pipe Fittings','PVC Pipe Fittings') "; expected "identifier"; SQL statement:
+INSERT INTO product_category ('category_id','name')
+            VALUES ('PVC Pipe Fittings','PVC Pipe Fittings') [42001-196]
+2017-09-17 11:12:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO PRODUCT_CATEGORY ('category_id'[*],'name')
+            VALUES ('PVC Pipe Fittings','PVC Pipe Fittings') "; expected "identifier"; SQL statement:
+INSERT INTO product_category ('category_id','name')
+            VALUES ('PVC Pipe Fittings','PVC Pipe Fittings') [42001-196]
+2017-09-17 11:34:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO PRODUCT_CATEGORY ('category_id'[*],'name')
+            VALUES ('PVC Pipe Fittings','PVC Pipe Fittings') "; expected "identifier"; SQL statement:
+INSERT INTO product_category ('category_id','name')
+            VALUES ('PVC Pipe Fittings','PVC Pipe Fittings') [42001-196]
+2017-09-17 15:43:46 jdbc[63]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * FROM COUNTRY COUNTRY ADDRESS[*] ADDRESS"; SQL statement:
+SELECT * FROM COUNTRY COUNTRY ADDRESS ADDRESS [42000-196]

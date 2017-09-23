@@ -1,0 +1,100 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myProductDemoLabel" jhiTranslate="khushFinalApp.productDemo.home.createOrEditLabel">Create or edit a Product Demo</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!productDemo.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="productDemo.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.productDemo.prodcutId" for="field_prodcutId">Prodcut Id</label>
+            <input type="text" class="form-control" name="prodcutId" id="field_prodcutId"
+                [(ngModel)]="productDemo.prodcutId"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.productDemo.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="productDemo.name"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.productDemo.details" for="field_details">Details</label>
+            <input type="text" class="form-control" name="details" id="field_details"
+                [(ngModel)]="productDemo.details"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.productDemo.fetures" for="field_fetures">Fetures</label>
+            <input type="text" class="form-control" name="fetures" id="field_fetures"
+                [(ngModel)]="productDemo.fetures"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.productDemo.size" for="field_size">Size</label>
+            <input type="text" class="form-control" name="size" id="field_size"
+                [(ngModel)]="productDemo.size"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.productDemo.unitWeight" for="field_unitWeight">Unit Weight</label>
+            <input type="number" class="form-control" name="unitWeight" id="field_unitWeight"
+                [(ngModel)]="productDemo.unitWeight"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.productDemo.uintInSotck" for="field_uintInSotck">Uint In Sotck</label>
+            <input type="number" class="form-control" name="uintInSotck" id="field_uintInSotck"
+                [(ngModel)]="productDemo.uintInSotck"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.productDemo.unitAvailable" for="field_unitAvailable">Unit Available</label>
+            <input type="number" class="form-control" name="unitAvailable" id="field_unitAvailable"
+                [(ngModel)]="productDemo.unitAvailable"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.productDemo.unitBlocked" for="field_unitBlocked">Unit Blocked</label>
+            <input type="number" class="form-control" name="unitBlocked" id="field_unitBlocked"
+                [(ngModel)]="productDemo.unitBlocked"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.productDemo.unitShipped" for="field_unitShipped">Unit Shipped</label>
+            <input type="number" class="form-control" name="unitShipped" id="field_unitShipped"
+                [(ngModel)]="productDemo.unitShipped"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.productDemo.reorderLevel" for="field_reorderLevel">Reorder Level</label>
+            <input type="number" class="form-control" name="reorderLevel" id="field_reorderLevel"
+                [(ngModel)]="productDemo.reorderLevel"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.productDemo.weightUinit" for="field_weightUinit">Weight Uinit</label>
+            <select class="form-control" name="weightUinit" [(ngModel)]="productDemo.weightUinit" id="field_weightUinit" >
+                <option value="GRAMS">{{'khushFinalApp.WeightUnit.GRAMS' | translate}}</option>
+                <option value="KG">{{'khushFinalApp.WeightUnit.KG' | translate}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.productDemo.productCategory" for="field_productCategory">Product Category</label>
+            <select class="form-control" id="field_productCategory" name="productCategory" [(ngModel)]="productDemo.productCategory" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="productCategoryOption.id === productDemo.productCategory?.id ? productDemo.productCategory : productCategoryOption" *ngFor="let productCategoryOption of productcategories; trackBy: trackProductCategoryById">{{productCategoryOption.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="khushFinalApp.productDemo.salesOrder" for="field_salesOrder">Sales Order</label>
+            <select class="form-control" id="field_salesOrder" multiple name="salesOrder" [(ngModel)]="productDemo.salesOrders">
+                <option [ngValue]="getSelected(productDemo.salesOrders, salesOrderOption)" *ngFor="let salesOrderOption of salesorders; trackBy: trackSalesOrderById">{{salesOrderOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

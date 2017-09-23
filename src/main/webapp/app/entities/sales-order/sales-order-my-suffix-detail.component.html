@@ -1,0 +1,79 @@
+
+<div *ngIf="salesOrder">
+    <h2><span jhiTranslate="khushFinalApp.salesOrder.detail.title">Sales Order</span> {{salesOrder.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="khushFinalApp.salesOrder.orderNumber">Order Number</span></dt>
+        <dd>
+            <span>{{salesOrder.orderNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.salesOrder.orderDate">Order Date</span></dt>
+        <dd>
+            <span>{{salesOrder.orderDate | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.salesOrder.shipDate">Ship Date</span></dt>
+        <dd>
+            <span>{{salesOrder.shipDate | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.salesOrder.status">Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'khushFinalApp.OrderStatus.' + salesOrder.status}}">{{salesOrder.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.salesOrder.customer">Customer</span></dt>
+        <dd>
+            <div *ngIf="salesOrder.customer">
+                <a [routerLink]="['/company-my-suffix', salesOrder.customer?.id]">{{salesOrder.customer?.companyName}}</a>
+            </div>
+        </dd>
+        <!--<dt><span jhiTranslate="khushFinalApp.salesOrder.shipment">Shipment</span></dt>-->
+        <!--<dd>-->
+            <!--<div *ngIf="salesOrder.shipment">-->
+                <!--<a [routerLink]="['/shipment-my-suffix', salesOrder.shipment?.id]">{{salesOrder.shipment?.id}}</a>-->
+            <!--</div>-->
+        <!--</dd>-->
+    </dl>
+    <div>
+        <span style="font-weight: bold;">Sales Order Product</span>
+    </div>
+
+    <div class="table-responsive" *ngIf="salesOrder.salesOrderProducts">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th ><span>Product</span> <span ></span></th>
+                <th ><span>Quantity</span> <span ></span></th>
+                <th ><span >Unit Price</span> <span ></span></th>
+                <th ><span >Discount</span> <span ></span></th>
+                <th ><span >Total</span> <span ></span></th>
+                <th ><span >Shipped Quantity</span> <span ></span></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let salesOrderProduct of salesOrder.salesOrderProducts ;trackBy: trackId">
+                <td>{{salesOrderProduct.product.name}}</td>
+                <td>{{salesOrderProduct.quantity}}</td>
+                <td>{{salesOrderProduct.unitPrice}}</td>
+                <td>{{salesOrderProduct.discount}}</td>
+                <td>{{salesOrderProduct.total}}</td>
+                <td>{{salesOrderProduct.shippedQuantity}}</td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'sales-order-my-suffix/'+ salesOrder.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

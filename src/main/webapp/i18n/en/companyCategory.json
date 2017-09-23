@@ -1,0 +1,24 @@
+{
+    "khushFinalApp": {
+        "companyCategory" : {
+            "home": {
+                "title": "Company Categories",
+                "createLabel": "Create a new Company Category",
+                "createOrEditLabel": "Create or edit a Company Category",
+                "search": "Search for Company Category"
+            },
+            "created": "A new Company Category is created with identifier {{ param }}",
+            "updated": "A Company Category is updated with identifier {{ param }}",
+            "deleted": "A Company Category is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Company Category {{ id }}?"
+            },
+            "detail": {
+                "title": "Company Category"
+            },
+            "categoryId": "Category Id",
+            "name": "Name",
+            "description": "Description"
+        }
+    }
+}

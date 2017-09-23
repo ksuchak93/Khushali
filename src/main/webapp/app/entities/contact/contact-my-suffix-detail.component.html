@@ -1,0 +1,79 @@
+
+<div *ngIf="contact">
+    <h2><span jhiTranslate="khushFinalApp.contact.detail.title">Contact</span> {{contact.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="khushFinalApp.contact.firstName">First Name</span></dt>
+        <dd>
+            <span>{{contact.firstName}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.contact.lastName">Last Name</span></dt>
+        <dd>
+            <span>{{contact.lastName}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.contact.title">Title</span></dt>
+        <dd>
+            <span>{{contact.title}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.contact.department">Department</span></dt>
+        <dd>
+            <span>{{contact.department}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.contact.email">Email</span></dt>
+        <dd>
+            <span>{{contact.email}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.contact.officePhone">Office Phone</span></dt>
+        <dd>
+            <span>{{contact.officePhone}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.contact.mobile">Mobile</span></dt>
+        <dd>
+            <span>{{contact.mobile}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.contact.homePhone">Home Phone</span></dt>
+        <dd>
+            <span>{{contact.homePhone}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.contact.fax">Fax</span></dt>
+        <dd>
+            <span>{{contact.fax}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.contact.whatsAppId">Whats App Id</span></dt>
+        <dd>
+            <span>{{contact.whatsAppId}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.contact.company">Company</span></dt>
+        <dd>
+            <div *ngIf="contact.company">
+                <a [routerLink]="['/company-my-suffix', contact.company?.id]">{{contact.company?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.contact.contactCategory">Contact Category</span></dt>
+        <dd>
+            <div *ngIf="contact.contactCategory">
+                <a [routerLink]="['/contact-category-my-suffix', contact.contactCategory?.id]">{{contact.contactCategory?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.contact.address">Address</span></dt>
+        <dd>
+            <span *ngFor="let address of contact.addresses; let last = last">
+                <a [routerLink]="['/address-my-suffix', address?.id ]">{{address.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'contact-my-suffix/'+ contact.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

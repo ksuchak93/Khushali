@@ -1,0 +1,67 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="mySalesOrderLabel" jhiTranslate="khushFinalApp.salesOrder.home.createOrEditLabel">Create or edit a Sales Order</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!salesOrder.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="salesOrder.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.salesOrder.orderNumber" for="field_orderNumber">Order Number</label>
+            <input type="text" class="form-control" name="orderNumber" id="field_orderNumber"
+                [(ngModel)]="salesOrder.orderNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.salesOrder.orderDate" for="field_orderDate">Order Date</label>
+            <div class="d-flex">
+                <input id="field_orderDate" type="datetime-local" class="form-control" name="orderDate" [(ngModel)]="salesOrder.orderDate"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.salesOrder.shipDate" for="field_shipDate">Ship Date</label>
+            <div class="d-flex">
+                <input id="field_shipDate" type="datetime-local" class="form-control" name="shipDate" [(ngModel)]="salesOrder.shipDate"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.salesOrder.status" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="salesOrder.status" id="field_status" >
+                <option value="DRAFT">{{'khushFinalApp.OrderStatus.DRAFT' | translate}}</option>
+                <option value="FULLFILLED">{{'khushFinalApp.OrderStatus.FULLFILLED' | translate}}</option>
+                <option value="CONFIRMED">{{'khushFinalApp.OrderStatus.CONFIRMED' | translate}}</option>
+                <option value="CANCELLED">{{'khushFinalApp.OrderStatus.CANCELLED' | translate}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.salesOrder.customer" for="field_customer">Customer</label>
+            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="salesOrder.customer" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="companyOption.id === salesOrder.customer?.id ? salesOrder.customer : companyOption" *ngFor="let companyOption of companies; trackBy: trackCompanyById">{{companyOption.companyName}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.salesOrder.shipment" for="field_shipment">Shipment Created</label>
+            <select class="form-control" id="field_shipment" name="shipment" [(ngModel)]="salesOrder.shipment" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="shipmentOption.id === salesOrder.shipment?.id ? salesOrder.shipment : shipmentOption" *ngFor="let shipmentOption of shipments; trackBy: trackShipmentById">{{shipmentOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

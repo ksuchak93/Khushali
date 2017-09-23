@@ -1,0 +1,56 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myShipmentLabel" jhiTranslate="khushFinalApp.shipment.home.createOrEditLabel">Create or edit a Shipment</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!shipment.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="shipment.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.shipment.shipmentNo" for="field_shipmentNo">Shipment No</label>
+            <input type="text" class="form-control" name="shipmentNo" id="field_shipmentNo"
+                [(ngModel)]="shipment.shipmentNo"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.shipment.bookingNo" for="field_bookingNo">Booking No</label>
+            <input type="text" class="form-control" name="bookingNo" id="field_bookingNo"
+                [(ngModel)]="shipment.bookingNo"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.shipment.etd" for="field_etd">Etd</label>
+            <div class="d-flex">
+                <input id="field_etd" type="datetime-local" class="form-control" name="etd" [(ngModel)]="shipment.etd"
+                  />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.shipment.shipperCompany" for="field_shipperCompany">Shipper Company</label>
+            <select class="form-control" id="field_shipperCompany" name="shipperCompany" [(ngModel)]="shipment.shipperCompany">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="companyOption.id === shipment.shipperCompany?.id ? shipment.shipperCompany : companyOption" *ngFor="let companyOption of shippercompanies; trackBy: trackCompanyById">{{companyOption.companyName}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="khushFinalApp.shipment.shipShipmentStatus" for="field_shipShipmentStatus">Ship Shipment Status</label>
+            <select class="form-control" id="field_shipShipmentStatus" name="shipShipmentStatus" [(ngModel)]="shipment.shipShipmentStatus" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="shipShipmentStatusOption.id === shipment.shipShipmentStatus?.id ? shipment.shipShipmentStatus : shipShipmentStatusOption" *ngFor="let shipShipmentStatusOption of shipshipmentstatuses; trackBy: trackShipShipmentStatusById">{{shipShipmentStatusOption.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

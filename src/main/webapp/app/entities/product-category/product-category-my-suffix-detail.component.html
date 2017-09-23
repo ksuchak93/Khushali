@@ -1,0 +1,33 @@
+
+<div *ngIf="productCategory">
+    <h2><span jhiTranslate="khushFinalApp.productCategory.detail.title">Product Category</span> {{productCategory.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="khushFinalApp.productCategory.categoryId">Category Id</span></dt>
+        <dd>
+            <span>{{productCategory.categoryId}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.productCategory.name">Name</span></dt>
+        <dd>
+            <span>{{productCategory.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.productCategory.description">Description</span></dt>
+        <dd>
+            <span>{{productCategory.description}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'product-category-my-suffix/'+ productCategory.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

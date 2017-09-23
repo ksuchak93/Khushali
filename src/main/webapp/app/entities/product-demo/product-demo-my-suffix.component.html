@@ -1,0 +1,105 @@
+<div>
+    <h2>
+        <span jhiTranslate="khushFinalApp.productDemo.home.title">Product Demos</span>
+        <button class="btn btn-primary float-right jh-create-entity create-product-demo-my-suffix" [routerLink]="['/', { outlets: { popup: ['product-demo-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="khushFinalApp.productDemo.home.createLabel">
+            Create new Product Demo
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'khushFinalApp.productDemo.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="productDemos">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="prodcutId"><span jhiTranslate="khushFinalApp.productDemo.prodcutId">Prodcut Id</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="khushFinalApp.productDemo.name">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="details"><span jhiTranslate="khushFinalApp.productDemo.details">Details</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fetures"><span jhiTranslate="khushFinalApp.productDemo.fetures">Fetures</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="size"><span jhiTranslate="khushFinalApp.productDemo.size">Size</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="unitWeight"><span jhiTranslate="khushFinalApp.productDemo.unitWeight">Unit Weight</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="uintInSotck"><span jhiTranslate="khushFinalApp.productDemo.uintInSotck">Uint In Sotck</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="unitAvailable"><span jhiTranslate="khushFinalApp.productDemo.unitAvailable">Unit Available</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="unitBlocked"><span jhiTranslate="khushFinalApp.productDemo.unitBlocked">Unit Blocked</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="unitShipped"><span jhiTranslate="khushFinalApp.productDemo.unitShipped">Unit Shipped</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="reorderLevel"><span jhiTranslate="khushFinalApp.productDemo.reorderLevel">Reorder Level</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="weightUinit"><span jhiTranslate="khushFinalApp.productDemo.weightUinit">Weight Uinit</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="productCategory.name"><span jhiTranslate="khushFinalApp.productDemo.productCategory">Product Category</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let productDemo of productDemos ;trackBy: trackId">
+                <td><a [routerLink]="['../product-demo-my-suffix', productDemo.id ]">{{productDemo.id}}</a></td>
+                <td>{{productDemo.prodcutId}}</td>
+                <td>{{productDemo.name}}</td>
+                <td>{{productDemo.details}}</td>
+                <td>{{productDemo.fetures}}</td>
+                <td>{{productDemo.size}}</td>
+                <td>{{productDemo.unitWeight}}</td>
+                <td>{{productDemo.uintInSotck}}</td>
+                <td>{{productDemo.unitAvailable}}</td>
+                <td>{{productDemo.unitBlocked}}</td>
+                <td>{{productDemo.unitShipped}}</td>
+                <td>{{productDemo.reorderLevel}}</td>
+                <td jhiTranslate="{{'khushFinalApp.WeightUnit.' + productDemo.weightUinit}}">{{productDemo.weightUinit}}</td>
+                <td>
+                    <div *ngIf="productDemo.productCategory">
+                        <a [routerLink]="['../product-category-my-suffix', productDemo.productCategory?.id ]" >{{productDemo.productCategory?.name}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../product-demo-my-suffix', productDemo.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'product-demo-my-suffix/'+ productDemo.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'product-demo-my-suffix/'+ productDemo.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="productDemos && productDemos.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

@@ -1,0 +1,81 @@
+
+<div *ngIf="productDemo">
+    <h2><span jhiTranslate="khushFinalApp.productDemo.detail.title">Product Demo</span> {{productDemo.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="khushFinalApp.productDemo.prodcutId">Prodcut Id</span></dt>
+        <dd>
+            <span>{{productDemo.prodcutId}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.productDemo.name">Name</span></dt>
+        <dd>
+            <span>{{productDemo.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.productDemo.details">Details</span></dt>
+        <dd>
+            <span>{{productDemo.details}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.productDemo.fetures">Fetures</span></dt>
+        <dd>
+            <span>{{productDemo.fetures}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.productDemo.size">Size</span></dt>
+        <dd>
+            <span>{{productDemo.size}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.productDemo.unitWeight">Unit Weight</span></dt>
+        <dd>
+            <span>{{productDemo.unitWeight}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.productDemo.uintInSotck">Uint In Sotck</span></dt>
+        <dd>
+            <span>{{productDemo.uintInSotck}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.productDemo.unitAvailable">Unit Available</span></dt>
+        <dd>
+            <span>{{productDemo.unitAvailable}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.productDemo.unitBlocked">Unit Blocked</span></dt>
+        <dd>
+            <span>{{productDemo.unitBlocked}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.productDemo.unitShipped">Unit Shipped</span></dt>
+        <dd>
+            <span>{{productDemo.unitShipped}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.productDemo.reorderLevel">Reorder Level</span></dt>
+        <dd>
+            <span>{{productDemo.reorderLevel}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.productDemo.weightUinit">Weight Uinit</span></dt>
+        <dd>
+            <span jhiTranslate="{{'khushFinalApp.WeightUnit.' + productDemo.weightUinit}}">{{productDemo.weightUinit}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.productDemo.productCategory">Product Category</span></dt>
+        <dd>
+            <div *ngIf="productDemo.productCategory">
+                <a [routerLink]="['/product-category-my-suffix', productDemo.productCategory?.id]">{{productDemo.productCategory?.name}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.productDemo.salesOrder">Sales Order</span></dt>
+        <dd>
+            <span *ngFor="let salesOrder of productDemo.salesOrders; let last = last">
+                <a [routerLink]="['/sales-order-my-suffix', salesOrder?.id ]">{{salesOrder.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'product-demo-my-suffix/'+ productDemo.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

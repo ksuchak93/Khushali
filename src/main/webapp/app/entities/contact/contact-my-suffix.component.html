@@ -1,0 +1,107 @@
+<div>
+    <h2>
+        <span jhiTranslate="khushFinalApp.contact.home.title">Contacts</span>
+        <button class="btn btn-primary float-right jh-create-entity create-contact-my-suffix" [routerLink]="['/', { outlets: { popup: ['contact-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="khushFinalApp.contact.home.createLabel">
+            Create new Contact
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'khushFinalApp.contact.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="contacts">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="firstName"><span jhiTranslate="khushFinalApp.contact.firstName">First Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lastName"><span jhiTranslate="khushFinalApp.contact.lastName">Last Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="title"><span jhiTranslate="khushFinalApp.contact.title">Title</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="department"><span jhiTranslate="khushFinalApp.contact.department">Department</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="email"><span jhiTranslate="khushFinalApp.contact.email">Email</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="officePhone"><span jhiTranslate="khushFinalApp.contact.officePhone">Office Phone</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="mobile"><span jhiTranslate="khushFinalApp.contact.mobile">Mobile</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="homePhone"><span jhiTranslate="khushFinalApp.contact.homePhone">Home Phone</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fax"><span jhiTranslate="khushFinalApp.contact.fax">Fax</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="whatsAppId"><span jhiTranslate="khushFinalApp.contact.whatsAppId">Whats App Id</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="company.id"><span jhiTranslate="khushFinalApp.contact.company">Company</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="contactCategory.id"><span jhiTranslate="khushFinalApp.contact.contactCategory">Contact Category</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let contact of contacts ;trackBy: trackId">
+                <td><a [routerLink]="['../contact-my-suffix', contact.id ]">{{contact.id}}</a></td>
+                <td>{{contact.firstName}}</td>
+                <td>{{contact.lastName}}</td>
+                <td>{{contact.title}}</td>
+                <td>{{contact.department}}</td>
+                <td>{{contact.email}}</td>
+                <td>{{contact.officePhone}}</td>
+                <td>{{contact.mobile}}</td>
+                <td>{{contact.homePhone}}</td>
+                <td>{{contact.fax}}</td>
+                <td>{{contact.whatsAppId}}</td>
+                <td>
+                    <div *ngIf="contact.company">
+                        <a [routerLink]="['../company-my-suffix', contact.company?.id ]" >{{contact.company?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="contact.contactCategory">
+                        <a [routerLink]="['../contact-category-my-suffix', contact.contactCategory?.id ]" >{{contact.contactCategory?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../contact-my-suffix', contact.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'contact-my-suffix/'+ contact.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'contact-my-suffix/'+ contact.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="contacts && contacts.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

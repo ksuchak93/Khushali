@@ -1,0 +1,35 @@
+{
+    "khushFinalApp": {
+        "productDemo" : {
+            "home": {
+                "title": "Product Demos",
+                "createLabel": "Create a new Product Demo",
+                "createOrEditLabel": "Create or edit a Product Demo",
+                "search": "Search for Product Demo"
+            },
+            "created": "A new Product Demo is created with identifier {{ param }}",
+            "updated": "A Product Demo is updated with identifier {{ param }}",
+            "deleted": "A Product Demo is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Product Demo {{ id }}?"
+            },
+            "detail": {
+                "title": "Product Demo"
+            },
+            "prodcutId": "Prodcut Id",
+            "name": "Name",
+            "details": "Details",
+            "fetures": "Fetures",
+            "size": "Size",
+            "unitWeight": "Unit Weight",
+            "uintInSotck": "Uint In Sotck",
+            "unitAvailable": "Unit Available",
+            "unitBlocked": "Unit Blocked",
+            "unitShipped": "Unit Shipped",
+            "reorderLevel": "Reorder Level",
+            "weightUinit": "Weight Uinit",
+            "productCategory": "Product Category",
+            "salesOrder": "Sales Order"
+        }
+    }
+}

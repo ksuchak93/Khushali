@@ -1,0 +1,35 @@
+{
+    "khushFinalApp": {
+        "productDemo" : {
+            "home": {
+                "title": "ProductDemos",
+                "createLabel": "नया Product Demo बनाएँ",
+                "createOrEditLabel": "Product Demo बनाएँ या संपादित करें",
+                "search": "Product Demo खोजें"
+            },
+            "created": "एक नया Product Demo [identifier: {{ param }}] तैयार है",
+            "updated": "एक Product Demo [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Product Demo [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Product Demo [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Product Demo"
+            },
+            "prodcutId": "Prodcut Id",
+            "name": "Name",
+            "details": "Details",
+            "fetures": "Fetures",
+            "size": "Size",
+            "unitWeight": "Unit Weight",
+            "uintInSotck": "Uint In Sotck",
+            "unitAvailable": "Unit Available",
+            "unitBlocked": "Unit Blocked",
+            "unitShipped": "Unit Shipped",
+            "reorderLevel": "Reorder Level",
+            "weightUinit": "Weight Uinit",
+            "productCategory": "Product Category",
+            "salesOrder": "Sales Order"
+        }
+    }
+}

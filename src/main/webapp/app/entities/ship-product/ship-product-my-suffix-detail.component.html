@@ -1,0 +1,49 @@
+
+<div *ngIf="shipProduct">
+    <h2><span jhiTranslate="khushFinalApp.shipProduct.detail.title">Ship Product</span> {{shipProduct.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="khushFinalApp.shipProduct.quantity">Quantity</span></dt>
+        <dd>
+            <span>{{shipProduct.quantity}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.shipProduct.netWeight">Net Weight</span></dt>
+        <dd>
+            <span>{{shipProduct.netWeight}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.shipProduct.grossWeight">Gross Weight</span></dt>
+        <dd>
+            <span>{{shipProduct.grossWeight}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.shipProduct.packege">Packege</span></dt>
+        <dd>
+            <span>{{shipProduct.packege}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.shipProduct.shipment">Shipment</span></dt>
+        <dd>
+            <div *ngIf="shipProduct.shipment">
+                <a [routerLink]="['/shipment-my-suffix', shipProduct.shipment?.id]">{{shipProduct.shipment?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.shipProduct.salesOrderProduct">Sales Order Product</span></dt>
+        <dd>
+            <div *ngIf="shipProduct.salesOrderProduct">
+                <a [routerLink]="['/sales-order-product-my-suffix', shipProduct.salesOrderProduct?.id]">{{shipProduct.salesOrderProduct?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'ship-product-my-suffix/'+ shipProduct.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

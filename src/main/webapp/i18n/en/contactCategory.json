@@ -1,0 +1,24 @@
+{
+    "khushFinalApp": {
+        "contactCategory" : {
+            "home": {
+                "title": "Contact Categories",
+                "createLabel": "Create a new Contact Category",
+                "createOrEditLabel": "Create or edit a Contact Category",
+                "search": "Search for Contact Category"
+            },
+            "created": "A new Contact Category is created with identifier {{ param }}",
+            "updated": "A Contact Category is updated with identifier {{ param }}",
+            "deleted": "A Contact Category is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Contact Category {{ id }}?"
+            },
+            "detail": {
+                "title": "Contact Category"
+            },
+            "categoryId": "Category Id",
+            "name": "Name",
+            "description": "Description"
+        }
+    }
+}

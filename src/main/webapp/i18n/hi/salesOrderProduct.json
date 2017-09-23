@@ -1,0 +1,30 @@
+{
+    "khushFinalApp": {
+        "salesOrderProduct" : {
+            "home": {
+                "title": "SalesOrderProducts",
+                "createLabel": "नया Sales Order Product बनाएँ",
+                "createOrEditLabel": "Sales Order Product बनाएँ या संपादित करें",
+                "search": "Sales Order Product खोजें"
+            },
+            "created": "एक नया Sales Order Product [identifier: {{ param }}] तैयार है",
+            "updated": "एक Sales Order Product [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Sales Order Product [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Sales Order Product [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Sales Order Product"
+            },
+            "quantity": "Quantity",
+            "unitPrice": "Unit Price",
+            "discount": "Discount",
+            "total": "Total",
+            "fulfilled": "Fulfilled",
+            "shippedQuantity": "Shipped Quantity",
+            "shipDate": "Ship Date",
+            "salesOrder": "Sales Order",
+            "product": "Product"
+        }
+    }
+}

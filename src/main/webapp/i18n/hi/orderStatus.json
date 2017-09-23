@@ -1,0 +1,11 @@
+{
+    "khushFinalApp": {
+        "OrderStatus" : {
+            "null": "",
+            "DRAFT": "DRAFT",
+            "FULLFILLED": "FULLFILLED",
+            "CONFIRMED": "CONFIRMED",
+            "CANCELLED": "CANCELLED"
+        }
+    }
+}

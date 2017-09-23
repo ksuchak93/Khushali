@@ -1,0 +1,29 @@
+
+<div *ngIf="shipShipmentStatus">
+    <h2><span jhiTranslate="khushFinalApp.shipShipmentStatus.detail.title">Ship Shipment Status</span> {{shipShipmentStatus.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="khushFinalApp.shipShipmentStatus.name">Name</span></dt>
+        <dd>
+            <span>{{shipShipmentStatus.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="khushFinalApp.shipShipmentStatus.status">Status</span></dt>
+        <dd>
+            <span>{{shipShipmentStatus.status}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'ship-shipment-status-my-suffix/'+ shipShipmentStatus.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

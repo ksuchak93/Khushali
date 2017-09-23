@@ -1,0 +1,95 @@
+<div>
+    <h2>
+        <span jhiTranslate="khushFinalApp.salesOrder.home.title">Sales Orders</span>
+        <button class="btn btn-primary float-right jh-create-entity create-sales-order-my-suffix" [routerLink]="['/', { outlets: { popup: ['sales-order-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="khushFinalApp.salesOrder.home.createLabel">
+            Create new Sales Order
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'khushFinalApp.salesOrder.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="salesOrders">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="orderNumber"><span jhiTranslate="khushFinalApp.salesOrder.orderNumber">Order Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="orderDate"><span jhiTranslate="khushFinalApp.salesOrder.orderDate">Order Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="shipDate"><span jhiTranslate="khushFinalApp.salesOrder.shipDate">Ship Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="status"><span jhiTranslate="khushFinalApp.salesOrder.status">Status</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="customer.id"><span jhiTranslate="khushFinalApp.salesOrder.customer">Customer</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="shipment.id"><span jhiTranslate="khushFinalApp.salesOrder.shipment">Shipment</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let salesOrder of salesOrders ;trackBy: trackId">
+                <td><a [routerLink]="['../sales-order-my-suffix', salesOrder.id ]">{{salesOrder.id}}</a></td>
+                <td>{{salesOrder.orderNumber}}</td>
+                <td>{{salesOrder.orderDate | date:'medium'}}</td>
+                <td>{{salesOrder.shipDate | date:'medium'}}</td>
+                <td jhiTranslate="{{'khushFinalApp.OrderStatus.' + salesOrder.status}}">{{salesOrder.status}}</td>
+                <td>
+                    <div *ngIf="salesOrder.customer">
+                        <a [routerLink]="['../company-my-suffix', salesOrder.customer?.id ]" >{{salesOrder.customer?.companyName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="salesOrder.shipment">
+                        <a [routerLink]="['../shipment-my-suffix', salesOrder.shipment?.id ]" >{{salesOrder.shipment?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../sales-order-my-suffix', salesOrder.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sales-order-my-suffix/'+ salesOrder.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sales-order-my-suffix/'+ salesOrder.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="salesOrders && salesOrders.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

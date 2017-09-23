@@ -1,0 +1,24 @@
+{
+    "khushFinalApp": {
+        "companyCategory" : {
+            "home": {
+                "title": "CompanyCategories",
+                "createLabel": "नया Company Category बनाएँ",
+                "createOrEditLabel": "Company Category बनाएँ या संपादित करें",
+                "search": "Company Category खोजें"
+            },
+            "created": "एक नया Company Category [identifier: {{ param }}] तैयार है",
+            "updated": "एक Company Category [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Company Category [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Company Category [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Company Category"
+            },
+            "categoryId": "Category Id",
+            "name": "Name",
+            "description": "Description"
+        }
+    }
+}

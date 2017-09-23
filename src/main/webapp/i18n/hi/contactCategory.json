@@ -1,0 +1,24 @@
+{
+    "khushFinalApp": {
+        "contactCategory" : {
+            "home": {
+                "title": "ContactCategories",
+                "createLabel": "नया Contact Category बनाएँ",
+                "createOrEditLabel": "Contact Category बनाएँ या संपादित करें",
+                "search": "Contact Category खोजें"
+            },
+            "created": "एक नया Contact Category [identifier: {{ param }}] तैयार है",
+            "updated": "एक Contact Category [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Contact Category [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Contact Category [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Contact Category"
+            },
+            "categoryId": "Category Id",
+            "name": "Name",
+            "description": "Description"
+        }
+    }
+}
